@@ -42,5 +42,38 @@
 		            }
 		        }
 		    }
+		    public void updateProduct(Produit product) 
+		    { 
+		    try {
+		        if (!verifyById(product.getId())) 
+		        {
+		        	throw new IllegalArgumentException("Can't find product with the ID :" + product.getId());
+		        }
+		     
+		        if (product.getPrix() < 0 || product.getQuantite() < 0) 
+		        {
+		            System.out.println("Price and quantity have to be positive numbers.");
+		            return;
+		        }
+
+		        for (int i = 0;i< products.size();i++) 
+		        {
+		            Produit produit = products.get(i);
+		            if (produit.getId().equals(product.getId())) 
+		            {
+		            	products.set(i,product);
+		                System.out.println("Product " + product +" updated successfully !");
+		                return;
+		            }
+		        }
+		    }
+		    catch (IllegalArgumentException e) 
+		    {
+		        System.out.println(e.getMessage());
+		    }
+		   }
+		    
+		   
+
 	}
 
