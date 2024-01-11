@@ -72,7 +72,32 @@
 		        System.out.println(e.getMessage());
 		    }
 		   }
-		    
+		    public void deleteProduct(Long productId) {
+		        try {
+		           
+		            Produit productToDelete = readProduct(productId);
+
+		            if (productToDelete != null) {
+		                products.remove(productToDelete);
+		                System.out.println("Product deleted successfully!");
+		            } else {
+		                throw new Exception("Error deleting product: Product not found.");
+		            }
+		        } catch (Exception e) {
+		            
+		            System.out.println(e.getMessage());
+		        }
+		    }
+		    public Produit readProduct(Long productId) {
+		        for (Produit product : products) {
+		            if (product.getId().equals(productId)) {
+		                return product;
+		            }
+		        }
+		        System.out.println("Error : Can't find product.");
+		        return null;
+		    }
+
 		   
 
 	}
