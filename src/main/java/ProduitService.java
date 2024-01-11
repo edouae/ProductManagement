@@ -8,6 +8,7 @@
 		    public ProduitService() {
 		        this.products = new ArrayList<>();
 		    }
+		    
 		    public void addProduct (Produit newProduct) {
 		        if (verifyById(newProduct.getId()) || verifyByName(newProduct.getNom())) {
 		            System.out.println("The product exists already.");
@@ -22,6 +23,7 @@
 		        products.add(newProduct);
 		        System.out.println("Product" + newProduct + "added successfully!");
 		    }
+		    
 		    private boolean verifyById(Long id) {
 		        return products.stream().anyMatch(produit -> produit.getId().equals(id));
 		    }
@@ -30,5 +32,15 @@
 		        return products.stream().anyMatch(produit -> produit.getNom().equalsIgnoreCase(name));
 		    }
 		    
+		    public void readProducts() {
+		        if (products.isEmpty()) {
+		            System.out.println("No products available.");
+		        } else {
+		            System.out.println("List of products:");
+		            for (Produit product : products) {
+		                System.out.println(product);
+		            }
+		        }
+		    }
 	}
 
